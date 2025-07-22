@@ -14,16 +14,7 @@ public class Simulator {
         int opcao;
         
         do { 
-            System.out.println("=========== BIBLIOTECA MENU ===========");
-            System.out.println("1. Cadastrar Livros");
-            System.out.println("2. Mostrar Livros");
-            System.out.println("3. Verificar Disponibilidade");
-            System.out.println("4. Retirar Livro");
-            System.out.println("5. Mostrar fila");
-            System.out.println("6. Retirar 1° da fila");              
-            System.out.println("0. Sair");
-            System.out.print("Escolha uma opção: ");
-            opcao = sc.nextInt();
+            opcao = Menu(sc);
             System.out.println();
             switch (opcao) {
                 case 1: 
@@ -38,7 +29,6 @@ public class Simulator {
                     }
                     System.out.println("Livros adicionados com sucesso!"); 
                     break;
-
                 case 2:
                     sc.nextLine(); //consumir dados
                     if (livros.isEmpty()) {
@@ -53,8 +43,7 @@ public class Simulator {
                     sc.nextLine(); //consumir dados
                     System.out.print("Digite o Titulo do Livro: ");
                     String titulo = sc.nextLine();
-                    Livro livroDisp = buscarLivro(livros, titulo);                  
- 
+                    Livro livroDisp = buscarLivro(livros, titulo);           
                     if(livroDisp!=null){                        
                         if (livroDisp.verificarDisponibilidade()) {
                             System.out.println("Livro disponível." );
@@ -67,8 +56,7 @@ public class Simulator {
                                 System.out.println("Digite seu nome: ");
                                 String nome = sc.nextLine();
                                 fila.add(nome); 
-                            }                                                      
-                          
+                            }
                         }
                     } else {
                         System.out.println("Livro não encontrado.");
@@ -86,7 +74,6 @@ public class Simulator {
                             l.setDisponivel(false);
                             System.out.println("Livro retirado com sucesso.");
                         }
-                        
                     }
                         } else{
                             System.out.println("Livro Indisponível");
@@ -110,10 +97,8 @@ public class Simulator {
                     break;
                 default:
                     System.out.println("Opção inválida.");
-            }
-            
-        } while (opcao!=0);
-        
+            } 
+        } while (opcao!=0); 
         sc.close();
     }
      //método auxiliar de buscar livro na lista
@@ -124,8 +109,18 @@ public class Simulator {
             }
         }
             return null;
-        
-
         }
-
+        public static int Menu(Scanner sc){
+            System.out.println("=========== BIBLIOTECA MENU ===========");
+            System.out.println("1. Cadastrar Livros");
+            System.out.println("2. Mostrar Livros");
+            System.out.println("3. Verificar Disponibilidade");
+            System.out.println("4. Retirar Livro");
+            System.out.println("5. Mostrar fila");
+            System.out.println("6. Retirar 1° da fila");              
+            System.out.println("0. Sair");
+            System.out.print("Escolha uma opção: ");
+            int opcao = Integer.parseInt(sc.nextLine());
+            return opcao;
+        }
 }
